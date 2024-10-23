@@ -14,7 +14,7 @@ builder.Services.AddTransient<OldPaymentVendor>();
 
 builder.Services.AddTransient<NewPaymentVendor>();
 
-builder.Services.AddSingleton<Func<bool, IPaymentStrategy>>(serviceProvider => useNewVendor =>
+builder.Services.AddScoped<Func<bool, IPaymentStrategy>>(serviceProvider => useNewVendor =>
     useNewVendor
         ? serviceProvider.GetRequiredService<NewPaymentVendor>()
         : serviceProvider.GetRequiredService<OldPaymentVendor>()
